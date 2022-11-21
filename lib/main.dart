@@ -121,7 +121,8 @@ class MyHomePage extends ConsumerWidget {
         onPressed: () async {
           final person = await createOrUpdatePersonDialog(context);
           if (person != null) {
-            ref.read(peopleProvider).add(person);
+            final dataModel = ref.read(peopleProvider);
+            dataModel.add(person);
           }
         },
       ),
@@ -156,7 +157,7 @@ Future<Person?> createOrUpdatePersonDialog(BuildContext context,
                 onChanged: (value) => name = value,
               ),
               TextField(
-                controller: nameController,
+                controller: ageController,
                 decoration: const InputDecoration(
                   labelText: 'Enter age here...',
                 ),
